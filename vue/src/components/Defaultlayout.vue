@@ -9,7 +9,14 @@
             </div>
             <div class="hidden md:block">
               <div class="ml-10 flex items-baseline space-x-4">
-                <a v-for="item in navigation" :key="item.name" :href="item.href" :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</a>
+                <router-link
+                  v-for="item in navigation"
+                  :key="item.name"
+                  :to="item.to"
+                  active-class="bg-gray-900 text-white"
+                  :class="[this.$route.name === item.to.name ? '' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']">
+                  {{ item.name }}
+                </router-link>
               </div>
             </div>
           </div>
@@ -68,13 +75,20 @@
             </button>
           </div>
           <div class="mt-3 px-2 space-y-1">
-            <DisclosureButton v-for="item in userNavigation" :key="item.name" as="a" :href="item.href" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">{{ item.name }}</DisclosureButton>
+            <router-link
+              v-for="item in navigation"
+              :key="item.name"
+              :to="item.to"
+              active-class="bg-gray-900 text-white"
+              :class="[this.$route.name === item.to.name ? '' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']">
+              {{ item.name }}
+            </router-link>
           </div>
         </div>
       </DisclosurePanel>
     </Disclosure>
 
-  <router-view></router-view>
+  <router-view :key="$route.path"></router-view>
   </div>
 </template>
 
@@ -89,16 +103,11 @@ const user = {
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-  { name: 'Reports', href: '#', current: false },
+  { name: 'Dashboard', to: '/dashboard' },
+  { name: 'Surveys', to: {name:'Surveys'} },
 ]
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Sign out', href: '#' }
 ]
 
 export default {
