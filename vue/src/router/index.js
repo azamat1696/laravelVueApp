@@ -20,7 +20,8 @@ const routes = [
         ]
     },
     {
-        path: '/login',
+        path: '/auth',
+        redirect: '/login',
         name: 'Auth',
         meta: {isGuest: true},
         component: AuthLayout,
