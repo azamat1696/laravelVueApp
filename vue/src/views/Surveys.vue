@@ -1,6 +1,6 @@
 <template>
   <PageComponent title="Surveys">
-    Surveys Content goes here
+    Surveys Content goes hereSurvey
   </PageComponent>
 </template>
 
