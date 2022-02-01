@@ -7,7 +7,7 @@ const tmpSurveys = [
         title: "TheCodeholic the youtobe chanel",
         slug: "thecodeholic the youtobe chanel",
         status: "draft",
-        image: "https://miro.medium.com/max/1400/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
+        image: "",
         description: "My name is Zura i developed long year i teach php laravel vs ",
         created_at: "2021-12-20 18:00:00",
         updated_at: "2021-12-20 18:00:00",
