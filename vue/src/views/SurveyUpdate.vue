@@ -116,7 +116,7 @@ import PageComponent from '../components/PageComponent.vue'
 import {ref} from "vue";
 import {useRoute} from "vue-router";
 import store from "../store";
-/*import QuestionEditor from "../components/editor/QuestionEditor.vue";*/
+import QuestionEditor from "../components/editor/QuestionEditor.vue";
 
 const route = useRoute();
 let model = ref({

@@ -175,9 +175,9 @@ const tmpSurveys = [
                     options:
                         [
                             { uuid: "a37810df-1aca-4bc6-93d8-acf2cbcbdfe5", text: "USA" },
-                            { uuid: "a37810df-1aca-4bc6-93d8-acf2cbcbdfe5", text: "USA" },
-                            { uuid: "a37810df-1aca-4bc6-93d8-acf2cbcbdfe5", text: "Georgia" },
-                            { uuid: "a37810df-1aca-4bc6-93d8-acf2cbcbdfe5", text: "USA" },
+                            { uuid: "a37810df-1aca-4bc6-93d8-acf2cbcbdfd5", text: "USA" },
+                            { uuid: "a37810df-1aca-4bc6-93d8-acf2cicadas5", text: "Georgia" },
+                            { uuid: "a37810df-1aca-4bc6-93d8-acf2cabbed5", text: "USA" },
                         ]
                 },
 
@@ -194,6 +194,7 @@ const store = createStore({
             token: sessionStorage.getItem("TOKEN"),
         },
         surveys: [...tmpSurveys],
+        questionTypes: ["text","select","radio","checkbox","textarea"],
     },
 
     getters: {},
