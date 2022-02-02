@@ -268,6 +268,7 @@
 <script setup>
 import {ref,computed} from "vue";
 import store from "../../store";
+import {v4 as uuidv4 } from  "uuid"
 
 const props = defineProps({
   question: Object,
