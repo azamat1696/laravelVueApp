@@ -74,7 +74,8 @@
                 </div>
                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <h3 class="text-2xl font-semibold flex items-center justify-between"> Questions
-                    <button type="button" class="flex items-center text-sm py-1 px-4 rounded-sm text-white bg-gray-600 hover:bg-gray-700">
+                    <button type="button"
+                            class="flex items-center text-sm py-1 px-4 rounded-sm text-white bg-gray-600 hover:bg-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                       <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd">
                       </path>
@@ -117,7 +118,10 @@ import {ref} from "vue";
 import {useRoute} from "vue-router";
 import store from "../store";
 import QuestionEditor from "../components/editor/QuestionEditor.vue";
+import { v4 as uuidv4 } from "uuid";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const route = useRoute();
 let model = ref({
   title : "",
@@ -132,6 +136,29 @@ if(route.params.id){
  model.value = store.state.surveys.find(
    (e) => e.id === parseInt(route.params.id)
  )
+}
+function addQuestion(index){
+
+  const newQuestion = {
+    id: uuidv4(),
+    type: "text",
+    question: "",
+    description: null,
+    data:{}
+  }
+}
+function questionChange(){
+}
+function deleteQuestion(question) {
+  model.value.questions = model.value.questions.filter( (q) =>q !== question)
+}
+function saveSurvey(){
+  store.dispatch("saveSurvey",model.value).then(({data}) => {
+    router.push({
+      name: "SurveyUpdate",
+      params: {id: data.data.id }
+    })
+  })
 }
 </script>
 

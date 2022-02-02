@@ -169,7 +169,7 @@
         <!-- Add new option -->
         <button
           type="button"
-          @click="addOption()"
+          @click="addOptions()"
           class="
             flex
             items-center
@@ -268,7 +268,7 @@
 <script setup>
 import {ref,computed} from "vue";
 import store from "../../store";
-import {v4 as uuidv4 } from  "uuid"
+import { v4 as uuidv4 } from "uuid";
 
 const props = defineProps({
   question: Object,
@@ -288,9 +288,9 @@ function shouldHaveOptions() {
   return ["select", "radio", "checkbox"].includes(model.value.type);
 }
 const getOptions = () => model.value.data.options;
-console.log(getOptions())
-const setOptions = () => model.value.data.options = options;
-
+function setOptions(options){
+  model.value.data.options = options
+}
 function  addOptions(){
   setOptions([
     ...getOptions(),
@@ -314,8 +314,23 @@ function typeChange() {
 function dataChange(){
   const data = model.value;
 
-  if(shouldHaveOptions()) {
-
+  if(!shouldHaveOptions()) {
+     delete data.data.options
   }
+  emit("change",data)
+}
+function addQuestion(){
+  emit("addQuestion",props.index + 1)
+}
+function deleteQuestion(){
+  emit("deleteQuestion",props.question)
+}
+function questionChange(question){
+  model.value.questions = model.value.questions.map((q) => {
+    if(q.id === question.id){
+      return JSON.parse(JSON.stringify(question));
+    }
+    return q;
+  })
 }
 </script>

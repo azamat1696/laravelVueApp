@@ -48,6 +48,7 @@
       </div>
     </div>
 
+
     <div>
       <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
@@ -63,7 +64,10 @@
 import { LockClosedIcon } from '@heroicons/vue/solid'
 import { useRouter } from "vue-router";
 import store from "../store";
+import {ref} from "vue";
 const router = useRouter();
+const errors = ref({})
+
 const user = {
   name:'',
   email: '',
@@ -76,6 +80,10 @@ function register(event) {
   .then((res)=>{
     router.push({
       name: 'Dashboard'
+    }).catch((error) => {
+      if (error.response.status === 422) {
+      errors.value = error.response.data.errors;
+      }
     })
   })
 }
